@@ -1,0 +1,56 @@
+div#d1{
+background-color: pink;
+}
+
+div#d2{
+float: left;
+width: 50px;
+height: 50px;
+overflow: hidden;
+background-color: red;
+}
+
+div#d3{
+background-color: brown;
+}
+
+div#d4{
+background-color: orange;
+}
+
+div#d5{
+clear: left;
+background-color: violet;
+}
+
+div#d6{
+background-color: magenta;
+position: absolute;
+display: block;
+width: 200px;
+height: 100px;
+top: 150px;
+left: 350px;
+overflow: hidden;
+z-index: 1;
+}
+
+div#d7{
+position: absolute;
+display: block;
+width: 200px;
+height: 100px;
+top: 100px;
+left: 300px;
+background-color: cyan;
+overflow: scroll;
+}
+
+div#d8{
+background-color: green;
+}
+
+div#d9{
+background-color: blue;
+}
+

@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+<title>Table Layout</title>
+<!-- <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="language" content="en-us"> -->
+<script type="text/javascript">
+
+var wheel={};
+
+function adjustpage(){
+	document.getElementById("mytablevscroll").onscroll = vscrollme;
+//	document.getElementById("mouseWheelTest").onmousewheel = wheelme; //For all the browsers except Firefox
+//	document.getElementById("mouseWheelTest").DOMMouseScroll = wheelme;
+	wheel= new class_wheel('scrollvalue', 'mytablevscroll', 440);
+//	document.getElementById("mouseWheelTest").onmousewheel= wheel;
+	document.getElementById("mouseWheelTest").addEventListener('DOMMouseScroll', wheel);
+}
+
+function class_wheel(scrollTextBox, scrollBar, maxScroll){
+
+	function handleEvent(event){
+
+		switch(event.axis){
+		case 1: document.getElementById(this.scrollTextBox).innerHTML = 'E['+  this.counter +']. Scroll Horizontal: ' + event.detail + ' ticks';
+				break;
+		case 2:	
+				var mynewtop= this.mytop + event.detail*2;
+				if (mynewtop>0 && this.mytop<0) mynewtop=0;
+				if (mynewtop<-this.maxScroll && wheelme.mytop>-this.maxScroll) mynewtop=-this.maxScroll;
+				if (mynewtop >= -this.maxScroll && mynewtop <=0) {
+					this.mytop= mynewtop;
+					document.getElementById(this.scrollTextBox).innerHTML = 'E['+  this.counter +']. Scroll: ' + event.detail + ' ticks. TOP = ' + this.mytop;
+					document.getElementById(this.scrollBar).scrollTop =  - this.mytop;
+				}
+				break;
+		}
+		this.counter++;
+	}
+
+	// CONSTRUCTOR . function wheelClass()
+	// Attributes
+	this.counter= 0;
+	this.mytop= 0;
+	this.scrollTextBox= scrollTextBox; //scrollvalue
+	this.scrollBar= scrollBar; //mytablevscroll
+	this.maxScroll= maxScroll; //440
+	// Methods
+	this.handleEvent= handleEvent;
+
+}
+
+function vscrollme(event){
+	document.getElementById("scrollvalue").innerHTML = event.target.scrollTop;
+	document.getElementById("mytablecontent").style.top =  "-" + event.target.scrollTop + "px";
+}
+
+window.onload = function() { adjustpage(); }
+</script>
+
+<style type="text/css">
+div.tableContainer {
+	height: 245px; /* Header + Conent + Footer */
+	overflow: hidden;
+	min-width: 620px; /* Sum(colwidths) + 20px del scroll bar */
+}
+
+div.tableContainer div.tableHeader div.tableRow{
+	height: 25px; /* Header row height */
+	overflow: hidden;
+}
+
+div.tableContainer div.tableHeader div#col01{
+	position: relative;
+	width: 200px; /* Col 1 Width */
+	height: 25px;  /* Header row height */
+	color: orange; 
+	background-color: navy;
+}
+div.tableContainer div.tableHeader div#col02{
+	position: relative;
+	top: -25px; /* -1{colnumber-1} * Header height */
+	left: 200px; /* sum(colwidth) to 1{colnumber-1} */
+	width: 100px; /* col 2 Width */
+	height: 25px; /* Header row height */
+	background-color: navy;
+	color: yellow;
+}
+div.tableContainer div.tableHeader div#col03{
+	position: relative;
+	top: -50px; /* -2{colnumber-1} * Header height */
+	left: 300px; /* sum(colwidth) to 2{colnumber-1} */
+	width: 300px; /* col 3 Width */
+	height: 25px; /* Header row height */
+	background-color: navy;
+	color: cyan;
+}
+
+
+div.tableContainer div.tableContent div.tableRow{
+	height: 16px; /* Content row Height */
+	overflow: hidden;
+}
+
+div.tableContainer div.tableContent div#col01{
+	position: relative;
+	width: 200px; /* Idem */
+	height: 16px;
+	background-color: orange;
+}
+div.tableContainer div.tableContent div#col02{
+	position: relative;
+	top: -16px;
+	left: 200px;
+	width: 100px;
+	height: 16px;
+	background-color: yellow;
+}
+div.tableContainer div.tableContent div#col03{
+	position: relative;
+	top: -32px;
+	left: 300px;
+	width: 300px;
+	height: 16px;
+	background-color: cyan;
+}
+
+
+div.tableContainer div.tableFooter div.tableRow{
+	height: 20px; /* Foot Height */
+	overflow: hidden;
+}
+
+div.tableContainer div.tableFooter div#col01{
+	position: relative;
+	width: 200px; /* Idem */
+	height: 20px;
+	background-color: gray;
+	color: orange;
+}
+div.tableContainer div.tableFooter div#col02{
+	position: relative;
+	top: -20px;
+	left: 200px;
+	width: 100px;
+	height: 20px;
+	background-color: gray;
+	color: yellow;
+}
+div.tableContainer div.tableFooter div#col03{
+	position: relative;
+	top: -40px;
+	left: 300px;
+	width: 300px;
+	height: 20px;
+	background-color: gray;
+	color: cyan;
+}
+
+div.tableContainer div.tableContentContainer{
+	overflow: hidden;
+	height: 200px; /* Content total height */
+	min-width: 620px; /* Total width Sum(colwidths) + 20px del scroll bar  */
+}
+
+div.tableContainer div.tableContent{
+	position: relative;
+}
+
+div.tableContainer div.vscroll{
+	position: relative;
+	top: -245px; /* total Height content + header + footer */
+	left: 600px; /* sum(colwidth) */
+	width: 20px; 
+	height: 245px; /* total Height content + header + footer */
+	background-color: silver;
+	overflow: auto;
+}
+
+div.tableContainer div.vscrollsize{
+	height: 685px; /* [altura del contenido: 40 filas * 16px] 640px  - [altura del contenedor] 200px - [altura de la barra scrollbar 25px header + 200px content + 20px footer] 245px */
+}
+
+</style>
+</head><body>
+
+<h1>Table Layout</h1>
+<p>Esto es un texto anterior a la tabla</p>
+<div class="tableContainer">
+<div class="tableHeader">
+<div class="tableRow"><div class="tableCell" id="col01">Col 1.</div><div class="tableCell" id="col02">Col 2.</div><div class="tableCell" id="col03">3 Col.</div></div>
+</div>
+<div class="tableContentContainer" id="mouseWheelTest">
+<div class="tableContent" id="mytablecontent">
+<div class="tableRow" id="row01"><div class="tableCell" id="col01">cell content 1</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row02"><div class="tableCell" id="col01">cell content 2</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row03"><div class="tableCell" id="col01">cell content 3</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row04"><div class="tableCell" id="col01">cell content 4</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row05"><div class="tableCell" id="col01">cell content 5</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row06"><div class="tableCell" id="col01">cell content 6</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row07"><div class="tableCell" id="col01">cell content 7</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row08"><div class="tableCell" id="col01">cell content 8</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row09"><div class="tableCell" id="col01">cell content 9</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row10"><div class="tableCell" id="col01">cell content 10</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row11"><div class="tableCell" id="col01">cell content 11</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row12"><div class="tableCell" id="col01">cell content 12</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row13"><div class="tableCell" id="col01">cell content 13</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row14"><div class="tableCell" id="col01">cell content 14</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row15"><div class="tableCell" id="col01">cell content 15</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row16"><div class="tableCell" id="col01">cell content 16</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row17"><div class="tableCell" id="col01">cell content 17</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row18"><div class="tableCell" id="col01">cell content 18</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row19"><div class="tableCell" id="col01">cell content 19</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row20"><div class="tableCell" id="col01">cell content 20</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row21"><div class="tableCell" id="col01">cell content 21</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row22"><div class="tableCell" id="col01">cell content 22</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row23"><div class="tableCell" id="col01">cell content 23</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row24"><div class="tableCell" id="col01">cell content 24</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row25"><div class="tableCell" id="col01">cell content 25</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row26"><div class="tableCell" id="col01">cell content 26</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row27"><div class="tableCell" id="col01">cell content 27</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row28"><div class="tableCell" id="col01">cell content 28</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row29"><div class="tableCell" id="col01">cell content 29</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row30"><div class="tableCell" id="col01">cell content 30</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row31"><div class="tableCell" id="col01">cell content 31</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row32"><div class="tableCell" id="col01">cell content 32</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row33"><div class="tableCell" id="col01">cell content 33</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row34"><div class="tableCell" id="col01">cell content 34</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row35"><div class="tableCell" id="col01">cell content 35</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row36"><div class="tableCell" id="col01">cell content 36</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row37"><div class="tableCell" id="col01">cell content 37</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row38"><div class="tableCell" id="col01">cell content 38</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row39"><div class="tableCell" id="col01">cell content 39</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+<div class="tableRow" id="row40"><div class="tableCell" id="col01">cell content 40</div><div class="tableCell" id="col02">cell content</div><div class="tableCell" id="col03">cell content</div></div>
+</div>
+</div>
+<div class="tableFooter">
+<div class="tableRow"><div class="tableCell" id="col01">Col 1.</div><div class="tableCell" id="col02">Col 2.</div><div class="tableCell" id="col03">Col 3.</div></div>
+</div>
+<div class="vscroll" id="mytablevscroll"><div class="vscrollsize"></div></div>
+</div>
+
+<p>Esto es un texto posterior a la tabla</p>
+<p>Scroll: <span id="scrollvalue"></span></p>
+
+
+</body></html>

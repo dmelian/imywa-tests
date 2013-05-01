@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+<title>Table Layout</title>
+<!-- <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="language" content="en-us"> -->
+<script type="text/javascript">
+
+window.onload = function() { stripedTable(); }
+</script>
+<style type="text/css">
+div.tableContainer{
+	height: 284px;
+	width: 620px;
+	overflow: hidden;
+}
+
+div.tableContainer div.colFooter{
+	overflow:hidden;
+	height: 12px;
+}
+
+div.tableContainer div.colHeader{
+	overflow:hidden;
+	height: 12px;
+}
+
+div.tableContainer div.cell{
+	overflow:hidden;
+	height: 12px;
+}
+
+div.tableContainer div.tableColumn{
+	
+}
+
+div.tableContainer div#col01{
+	position: relative;	
+	top: 0px;
+	left: 0px;
+	width: 100px;
+	background-color: orange;
+}
+div.tableContainer div#col02{
+	position: relative;	
+	top: -264px;
+	left: 100px;
+	width: 200px;
+	background-color: yellow;
+}
+div.tableContainer div#col03{
+	position: relative;	
+	top: -528px;
+	left: 300px;
+	width: 300px;
+	background-color: cyan;
+}
+
+div.tableContainer div.vscroll{
+	position: relative;
+	top: -792px;
+	left: 600px;
+	height: 264px;
+	width: 20px;
+	background-color: silver;
+	overflow: auto;
+}
+
+div.tableContainer div.vscrollsize{
+	height: 700px;
+}
+
+div.tableContainer div.hscroll{
+	position: relative;
+	top: -792px;
+	left: 0px;
+	height: 20px;
+	width: 620px;
+	background-color: silver;
+	overflow: auto;
+}
+
+div.tableContainer div.hscrollsize{
+	width: 1700px;
+}
+
+
+
+</style>
+</head><body>
+
+<h1>Table Layout</h1>
+<p>Esto es un texto anterior a la tabla</p>
+<div class="tableContainer">
+<div class="tableColumn" id="col01">
+<div class="colHeader">Header</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="colFooter">Foot</div>
+</div>
+<div class="tableColumn"  id="col02">
+<div class="colHeader">Header</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="colFooter">Foot</div>
+</div>
+<div class="tableColumn"  id="col03">
+<div class="colHeader">Header</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="cell">Cell Content</div>
+<div class="colFooter">Foot</div>
+</div>
+<div class="vscroll"><div class="vscrollsize"></div></div>
+<div class="hscroll"><div class="hscrollsize">H</div></div>
+</div>
+
+<p>Esto es un texto posterior a la tabla</p>
+
+
+
+</body></html>

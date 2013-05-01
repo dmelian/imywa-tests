@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Prueba del scroll handler</title>
+<script type="text/javascript" src="events.js"></script>
+<script>
+function start(){
+	new scrollHandler(document.getElementById('view')
+			, document.getElementById('hscrollbar')
+			, document.getElementById('vscrollbar'));
+};
+</script>
+
+</head>
+<body onload="start();">
+<div id="container" style="position:absolute; top:0px; left:0px; width:300px; height:300px;overflow:hidden;background-color:silver;">
+	<div id="view" style="position:absolute; width:1000px; height:1000px;background-color:yellow;">
+	<h1>Este es el caballo que viene por la pradera de Bonanza. Aleluya, Aleluya.</h1>
+	<p>Línea 1</p>
+	<p>Línea 2</p>
+	<p>Línea 3</p>
+	<p>Línea 4</p>
+	<p>Línea 5</p>
+	<p>Línea 6</p>
+	<p>Línea 7</p>
+	<p>Línea 8</p>
+	<p>Línea 9</p>
+	<p>Línea 10</p>
+	<p>Línea 11</p>
+	<p>Línea 12</p>
+	<p>Línea 13</p>
+	<p>Línea 14</p>
+	<p>Línea 15</p>
+	<p>Línea 16</p>
+	<p>Línea 17</p>
+	<p>Línea 18</p>
+	<p>Línea 19</p>
+	<p>Línea 20</p>
+	</div>
+</div>
+<div id="hscrollbar" style="position:absolute; top:300px; left:0px; height:20px; width:300px;overflow:auto;background-color:silver;">
+	<div id="scrollsize" style="position:absolute; height:2px; width:1000px;background-color:red;">
+	</div>
+</div>
+<div id="vscrollbar" style="position:absolute;top:0px;left:300px;height:300px; width:20px;overflow:auto;background-color:silver;">
+	<div id="scrollsize" style="position:absolute; height:1000px; width:2px;background-color:red;">
+	</div>
+</div>
+</body>
+</html>

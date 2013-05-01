@@ -1,0 +1,64 @@
+div#titlebar{
+background-color: navy;
+color: white;
+}
+
+div#menubar{
+background-color: white;
+}
+
+div#menubar a{
+padding-left: 0.5em;
+padding-right: 2em;
+background-color: smokewhite;
+}
+
+div#menubar a:hover{
+background-color: black;
+color: white;
+}
+
+div#menus ul{
+margin: 0;
+padding: 2px;
+width: 180px;
+list-style-type: none;
+position: absolute;
+background-color: white;
+visibility: hidden;
+}
+
+div#menus li{
+top: -2px;
+position: relative;
+display: inline;
+}
+
+div#menus li a{
+width: 100%;
+display: inline-block;
+}
+
+div#menus li a:hover{
+background-color: black;
+color: white;
+}
+
+div#menus .checked{
+background: red url(menuchecked.gif) no-repeat center right;
+}
+
+div#toolbar{
+background-color: silver;
+}
+
+div#content{
+background-color: orange;
+overflow: auto;
+}
+
+div#statusbar{
+background-color: navy;
+color: white;
+}
+

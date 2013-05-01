@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+
+/* Views */
+div.xlist div.view {
+	position: relative; 
+	left: 0px; top: 0px;
+}
+
+div.xlist div.container {
+	overflow: hidden;
+}
+
+/* Rows */
+div.xlist div.row {
+	overflow: hidden;
+	height: 25px;
+	color: black; 
+	background-color: white;
+}
+
+div.xlist div.header div.row { 
+	color: white; 
+	background-color: cyan;
+	background-image: url("image/list_header.png");
+}
+
+div.xlist div.bodyview div.row { 
+	color: black; 
+	background-color: lightyellow;
+}
+
+div.xlist div.bodyview div.alternate { 
+	color: black; 
+	background-color: lightcyan;
+}
+
+div.xlist div.bodyview div.highlight0 { 
+	color: white; 
+	background-color: red;
+}
+
+div.xlist div.bodyview div.highlight1 { 
+	color: white; 
+	background-color: red;
+}
+
+div.xlist div.bodyview div.highlight2 { 
+	color: white; 
+	background-color: red;
+}
+
+div.xlist div.footer div.row { 
+	color: black; 
+	background-color: orange;
+	background-image: url('image/list_footer.png');
+}
+
+div.xlist div.rowselector{
+	width: 25px;
+	height: 25px;
+	background-color: silver;
+	background-image: url('image/rowselector.svg');
+}
+
+/* Cells */
+div.xlist div.cell {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+}
+
+/* Scroll Bars */
+div.xlist div.scrollbar{
+	position: relative; overflow: auto;
+	color: red; 
+	background-color: red; 
+}
+
+div.xlist div.scrollx{
+	height: 20px;
+}
+
+div.xlist div.scrolly{
+	width: 20px;
+}
+
+div.xlist div.sizescrollbar{
+	overflow: hidden; 
+	color: blue; 
+	background-color: blue;	
+}
+
+div.xlist div.sizescrollx{
+	height: 2px;
+}
+
+div.xlist div.sizescrolly{
+	width: 2px;
+}
+
+
+/* Mouse event handles */
+div.xlist div.resizeviewhandle {
+	width: 20px;
+	height: 20px;
+	position: relative; overflow: auto;
+	color: red; background-color: red;'
+	background-position: center-top; 
+	background-image: url('image/resizehandle.png'); 
+	cursor: se-resize; 
+}
+
+div.xlist div.resizecolhandle {
+	float: right;
+	width: 12px; 
+	height: 100%;
+	background-color: silver;
+	background-position: center-top;
+	background-image: url("image/list_widthpull.png");
+	background-repeat: repeat-y; 
+	cursor: ew-resize;
+}

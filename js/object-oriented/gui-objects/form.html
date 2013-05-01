@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<script type="text/javascript" src="events.js"></script>
+<script type="text/javascript" src="frmxform.js"></script>
+<script type="text/javascript" src="frmxlist.js"></script>
+
+<script type="text/javascript" src="xlist.js"></script>
+<script type="text/javascript" src="xform.js"></script>
+<link rel="stylesheet" type="text/css" href="xlist.css">
+<link rel="stylesheet" type="text/css" href="xform.css">
+</head>
+
+<body  onload="new xform('default');"> <!-- onload="new xform('default');" -->
+<form method="post">
+<div class="xform">
+	<div class="toppanel">
+		<div class="titlebar">titlebar</div>
+		<div class="navigatebar">navigatebar</div>
+		<div class="toolbar">toolbar</div>
+	</div>
+	<div class="midlepanel">
+		<div class="dashboard">dashboard</div>
+		<div class="framecontainer">
+			<div>framecontainer</div>
+			<div class="xlist" id="prueba1">
+				<div class="tableselector">TS</div>
+				<div class="rowselector">RS</div>
+				<div class="footselector">FS</div>
+				<div class="frozencolscontainer">
+					<div class="content">
+						<div class="head"></div>
+						<div class="body"></div>
+						<div class="foot"></div>
+					</div>
+				</div>
+				<div class="listcontainer">
+					<div class="content">
+						<div class="head"></div>
+						<div class="body"></div>
+						<div class="foot"></div>
+					</div>
+				</div>
+				<div class="button maximize">MX</div>
+				<div class="grip resize">RS</div>
+				<div class="scrollbar frozencolshscroll">FCHS</div>
+				<div class="scrollbar hscroll">HS</div>
+				<div class="scrollbar vscroll">VS</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottompanel">
+		<div class="statusbar">statusbar</div>
+		<div class="buttonbar">buttonbar</div>
+	</div>
+</div>
+</form>
+</body>
+</html>

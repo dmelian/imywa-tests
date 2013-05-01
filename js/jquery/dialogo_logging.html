@@ -1,0 +1,47 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<link href="http://localhost/apps/style/jqueryui/start/jquery-ui-1.9.1.custom.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script>
+   
+   $(function() {
+        $( ".dialogx" ).dialog({
+            resizable: true,
+            width: 400,
+            modal: true,
+			title: "Entrada al sistema",
+            buttons: { // Le indicamos los botones del dialgo. Esto es para pruebas.		
+                "Aceptar": function() {
+                    $( this ).dialog( "close" );
+                },
+                "Cancelar": function() {
+                    $( this ).dialog( "pepe" );
+                }
+            }
+        });
+	});
+            
+</script>
+</head>
+<body>
+
+<div class="dialogx" id="maindlg">
+	<table>
+		<tr>
+			<td class="card_caption">Usuario</td>
+			<td class="card_content"><input name="user" type="text" value=""></td>
+		</tr>
+		<tr>
+			<td class="card_caption">Contraseña</td>
+			<td class="card_content"><input name="password" type="password" value=""></td>
+		</tr>
+	</table>
+</div>
+</body>
+
+</html>

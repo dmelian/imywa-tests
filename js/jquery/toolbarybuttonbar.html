@@ -1,0 +1,178 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>TEST1 - TOOLBAR</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/start/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<style>
+
+	#toolbar{position:absolute; right: 0px; margin-right: 10px; top: 10px;}
+	#buttonbar{position:absolute; right: 0px; margin-right: 10px; bottom: 10px;}
+    .ui-menu {position:absolute; width: 150px; }
+	#menu_config{position:absolute;  left:400px; top: 30px;}
+	.ui-menu-icon {float: left !important;}
+
+
+
+</style>
+<script>
+
+    $(function() {
+		$("#close").button( {text: false, icons:{primary: "ui-icon-circle-close"}});
+
+		$("#config").button({text: false
+				,icons:{ primary: "ui-icon-gear" }})
+			.click(function() {
+				var menu=$("#menu_config").show()
+					.position({my: "right top", at: "right bottom", of: this });
+
+                $( document ).one( "click", function() {
+                    menu.hide();
+                });
+				return false;
+			});
+
+		$("#menu_config").hide()
+			.menu({ position: { my: "right top", at: "left top" }
+			, icons: { submenu: "ui-icon-carat-1-w" } })
+			;
+
+		$("#buttonbar").children().button();
+		
+
+		$("#customer").click(function() {
+				var menu=$("#menu_customer").show()
+					.position({my: "right bottom", at: "right top", of: this });
+
+                $( document ).one( "click", function() {
+                    menu.hide();
+                });
+
+				return false;
+			});
+
+		$("#menu_customer").hide()
+			.menu({ position: { my: "right bottom", at: "left bottom" }
+			, icons: { submenu: "ui-icon-carat-1-w" } })
+			;
+
+	});
+
+</script>
+</head>
+
+<body>
+
+<div id="toolbar" class="ui-widget-header ui-corner-all">
+    <button id="config">Configuración</button>
+    <button id="close">Salir</button>
+</div>
+<ul id="menu_config">
+	<li><a>Tema</a>
+		<ul>
+			<li><a>blitzer</a></li>
+			<li><a>cupertino</a></li>
+			<li><a>custom-theme</a></li>
+			<li><a>dark-hive</a></li>
+			<li><a>eggplant</a></li>
+			<li><a>excite-bike</a></li>
+			<li><a>flick</a></li>
+			<li><a>hot-sneaks</a></li>
+			<li><a>humanity</a></li>
+			<li><a>le-frog</a></li>
+			<li><a>overcast</a></li>
+			<li><a>pepper-grinder</a></li>
+			<li><a>redmond</a></li>
+			<li><a>smoothness</a></li>
+			<li><a>south-street</a></li>
+			<li><a>start</a></li>
+			<li><a>sunny</a></li>
+			<li><a>ui-darkness</a></li>
+			<li><a>ui-lightness</a></li>
+			<li><a>vader</a></li>
+		</ul>
+	</li> 
+	<li><a>Idioma</a>
+		<ul>
+			<li><a>english</a>
+				<ul>
+					<li><a>Schotish</a></li>
+					<li><a>Wales</a></li>
+					<li><a>Bretain</a></li>
+					<li><a>Irish</a></li>
+					<li><a>Usa</a></li>
+				</ul>
+			</li>
+			<li><a>español</a>
+				<ul>
+					<li><a>Andaluz</a></li>
+					<li><a>Madrileño</a></li>
+					<li><a>Canario</a></li>
+					<li><a>Vallesoletano</a></li>
+					<li><a>Asturiano</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+ 
+<div id="buttonbar" class="ui-widget-header ui-corner-all">
+    <button id="customer">Customer</button>
+    <button id="ok">Aceptar</button>
+	<button id="cancel">Cancelar</button>
+</div> 
+
+<ul id="menu_customer">
+	<li><a>Tema</a>
+		<ul>
+			<li><a>blitzer</a></li>
+			<li><a>cupertino</a></li>
+			<li><a>custom-theme</a></li>
+			<li><a>dark-hive</a></li>
+			<li><a>eggplant</a></li>
+			<li><a>excite-bike</a></li>
+			<li><a>flick</a></li>
+			<li><a>hot-sneaks</a></li>
+			<li><a>humanity</a></li>
+			<li><a>le-frog</a></li>
+			<li><a>overcast</a></li>
+			<li><a>pepper-grinder</a></li>
+			<li><a>redmond</a></li>
+			<li><a>smoothness</a></li>
+			<li><a>south-street</a></li>
+			<li><a>start</a></li>
+			<li><a>sunny</a></li>
+			<li><a>ui-darkness</a></li>
+			<li><a>ui-lightness</a></li>
+			<li><a>vader</a></li>
+		</ul>
+	</li> 
+	<li><a>Idioma</a>
+		<ul>
+			<li><a>english</a>
+				<ul>
+					<li><a>Schotish</a></li>
+					<li><a>Wales</a></li>
+					<li><a>Bretain</a></li>
+					<li><a>Irish</a></li>
+					<li><a>Usa</a></li>
+				</ul>
+			</li>
+			<li><a>español</a>
+				<ul>
+					<li><a>Andaluz</a></li>
+					<li><a>Madrileño</a></li>
+					<li><a>Canario</a></li>
+					<li><a>Vallesoletano</a></li>
+					<li><a>Asturiano</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+ 
+</body>
+</html>

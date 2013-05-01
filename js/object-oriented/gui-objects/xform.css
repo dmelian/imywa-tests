@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+div.xform{
+	position: absolute;
+	background-color: olive;
+	left: 0px; width: 100%;
+	top: 0px;  height: 100%;
+}
+
+div.toppanel{
+	position: absolute;
+	left: 0px; width: 100%; 
+	top: 0px; height: 67px;
+	overflow: hidden;
+	background-color: silver;
+}
+
+div.midlepanel{
+	position: absolute;
+	left: 0px; width: 100%;
+	top: 67px; bottom: 32px;
+	overflow: hidden;
+	background-color: silver;
+}
+
+div.bottompanel {
+	position: absolute;
+	left: 0px; width: 100%; 
+	bottom: 0px; height: 32px;
+	overflow: hidden;
+	background-color: silver;	
+}
+
+
+div.titlebar{
+	position: absolute;
+	top: 0px; height: 35px;
+	left: 0px; width: 100%;
+
+	background-color: blue;	
+}
+
+div.navigatebar{
+	position: absolute;
+	left: 0px; 
+	top: 35px; height: 32px;
+	background-color: yellow;
+	
+}
+
+div.toolbar{
+	position: absolute;
+	right: 0px;
+	top: 35px; height: 32px;
+	background-color: orange;
+}
+
+div.dashboard {
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	background-color: lime;
+	
+}
+
+div.framecontainer {
+	height: 100%;
+	
+	overflow: auto;
+	background-color: pink;
+}
+
+
+div.statusbar {
+	position: absolute;
+	left: 0px; 	
+	top: 0px; height: 32px;
+	background-color: navy;
+	color: white;
+}
+
+div.buttonbar{
+	position: absolute;
+	right: 0px; 	
+	top: 0px; height: 32px;
+	background-color: magenta;
+}

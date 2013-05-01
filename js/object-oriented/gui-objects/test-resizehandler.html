@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Resize handler test</title>
+<script type="text/javascript" src="events.js"></script>
+<script>
+function start(){
+	new resizeTesting();
+	
+};
+
+function resizeTesting(){
+	
+	this.OnResize= function(id, deltax, deltay){
+		alert('Resizing '+ id);
+		
+	}
+
+	new resizeHandler(document.getElementById('box1pullhandle'), this);
+	new resizeHandler(document.getElementById('box2pullhandle'), this);
+	new resizeHandler(document.getElementById('box3pullhandle'), this);
+	
+	
+	
+};
+</script>
+
+</head>
+<body onload="start();" style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;">
+<div id="box1" style="position:absolute;left:0px;top:0px;width:100px;height:100px;background-color:blue;">
+	<div id="box1pullhandle" style="position:absolute;right:0px;bottom:0px;width:10px;height:10px;background-color:red;cursor:ew-resize;"></div>
+</div>
+<div id="box2" style="position:absolute;left:0px;top:100px;width:100px;height:100px;background-color:green;">
+	<div id="box2pullhandle" style="position:absolute;right:0px;bottom:0px;width:10px;height:10px;background-color:red;cursor:ew-resize;"></div>
+</div>
+<div id="box3" style="position:absolute;left:0px;top:200px;width:100px;height:100px;background-color:yellow;">
+	<div id="box3pullhandle" style="position:absolute;right:0px;bottom:0px;width:10px;height:10px;background-color:red;cursor:ew-resize;"></div>
+</div>
+</body>
+</html>

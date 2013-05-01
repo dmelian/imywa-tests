@@ -1,0 +1,72 @@
+* THE XMLHTTPREQUEST OBJECT.
+
+	variable=new XMLHttpRequest();
+
+* THE REQUEST. GET / POST.
+
+	open(method,url,async) 	Specifies the type of request
+		method: the type of request: GET or POST
+		url: the location of the file on the server
+		async: true (asynchronous) or false (synchronous)
+
+	send(string)	Sends the request to the server
+		string: Only used for POST requests
+
+	setRequestHeader(header,value) 	Adds HTTP headers to the request.
+		header: specifies the header name
+		value: specifies the header value
+
+
+	GET METHOD
+		xmlhttp.open("GET","ajax_info.php",false);
+		xmlhttp.send();
+
+	POST METHOD
+		xmlhttp.open("POST","ajax_test.php",false);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("fname=Henry&lname=Ford&....&fieldn=valuen");
+
+
+* THE RESPONSE.
+
+	responseText 	get the response data as a string
+	responseXML 	get the response data as XML data
+
+	TEXT
+		document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+
+	XML
+		xmlDoc=xmlhttp.responseXML;
+		txt="";
+		x=xmlDoc.getElementsByTagName("ARTIST");
+		for (i=0;i<x.length;i++){
+		  txt=txt + x[i].childNodes[0].nodeValue + "<br />";
+		}
+		document.getElementById("myDiv").innerHTML=txt;
+
+
+* ASYNCHRONUS MODE
+
+	onreadystatechange 	Stores a function (or the name of a function) to be called automatically each time the readyState property changes
+	readyState 	Holds the status of the XMLHttpRequest. Changes from 0 to 4:
+		0: request not initialized
+		1: server connection established
+		2: request received
+		3: processing request
+		4: request finished and response is ready
+	status 	
+		200: "OK"
+		404: Page not found
+
+	EVENT
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+			}
+		  } 
+
+
+XML
+

@@ -1,0 +1,189 @@
+div#titlebar{
+background-color: navy;
+color: white;
+}
+
+div#menubar{
+background-color: white;
+}
+
+div#menubar a{
+padding-left: 0.5em;
+padding-right: 2em;
+background-color: smokewhite;
+}
+
+div#menubar a:hover{
+background-color: black;
+color: white;
+}
+
+div#menus ul{
+margin: 0;
+padding: 2px;
+width: 180px;
+list-style-type: none;
+position: absolute;
+background-color: white;
+visibility: hidden;
+z-index: 1;
+}
+
+div#menus li{
+top: -2px;
+position: relative;
+display: inline;
+}
+
+div#menus li a{
+width: 100%;
+display: inline-block;
+}
+
+div#menus li a:hover{
+background-color: black;
+color: white;
+}
+
+div#menus .checked{
+background: red url(menuchecked.gif) no-repeat center right;
+}
+
+div#toolbar{
+background-color: silver;
+}
+
+div#statusbar{
+background-color: navy;
+color: white;
+}
+
+div#header{
+background-color: silver;
+}
+
+
+div#tableContainer{
+	height: 245px; /* Header + Conent + Footer */
+	overflow: hidden;
+	min-width: 620px; /* Sum(colwidths) + 20px del scroll bar */
+}
+
+div#tableContainer div.tableHeader div.tableRow{
+	height: 25px; /* Header row height */
+	overflow: hidden;
+}
+
+div#tableContainer div.tableHeader div#col01{
+	position: relative;
+	width: 200px; /* Col 1 Width */
+	height: 25px;  /* Header row height */
+	color: orange; 
+	background-color: navy;
+}
+
+div#tableContainer div.tableHeader div#col02{
+	position: relative;
+	top: -25px; /* -1{colnumber-1} * Header height */
+	left: 200px; /* sum(colwidth) to 1{colnumber-1} */
+	width: 100px; /* col 2 Width */
+	height: 25px; /* Header row height */
+	background-color: navy;
+	color: yellow;
+}
+
+div#tableContainer div.tableHeader div#col03{
+	position: relative;
+	top: -50px; /* -2{colnumber-1} * Header height */
+	left: 300px; /* sum(colwidth) to 2{colnumber-1} */
+	width: 300px; /* col 3 Width */
+	height: 25px; /* Header row height */
+	background-color: navy;
+	color: cyan;
+}
+
+div#tableContainer div.tableContent div.tableRow{
+	height: 16px; /* Content row Height */
+	overflow: hidden;
+}
+
+div#tableContainer div.tableContent div#col01{
+	position: relative;
+	width: 200px; /* Idem */
+	height: 16px;
+	background-color: orange;
+}
+div#tableContainer div.tableContent div#col02{
+	position: relative;
+	top: -16px;
+	left: 200px;
+	width: 100px;
+	height: 16px;
+	background-color: yellow;
+}
+div#tableContainer div.tableContent div#col03{
+	position: relative;
+	top: -32px;
+	left: 300px;
+	width: 300px;
+	height: 16px;
+	background-color: cyan;
+}
+
+
+div#tableContainer div.tableFooter div.tableRow{
+	height: 20px; /* Foot Height */
+	overflow: hidden;
+}
+
+div#tableContainer div.tableFooter div#col01{
+	position: relative;
+	width: 200px; /* Idem */
+	height: 20px;
+	background-color: gray;
+	color: orange;
+}
+div#tableContainer div.tableFooter div#col02{
+	position: relative;
+	top: -20px;
+	left: 200px;
+	width: 100px;
+	height: 20px;
+	background-color: gray;
+	color: yellow;
+}
+div#tableContainer div.tableFooter div#col03{
+	position: relative;
+	top: -40px;
+	left: 300px;
+	width: 300px;
+	height: 20px;
+	background-color: gray;
+	color: cyan;
+}
+
+div#tableContainer div.tableContentContainer{
+	overflow: hidden;
+	height: 200px; /* Content total height */
+	min-width: 620px; /* Total width Sum(colwidths) + 20px del scroll bar  */
+}
+
+div#tableContainer div.tableContent{
+	position: relative;
+}
+
+div#tableContainer div.vscroll{
+	position: relative;
+	top: -245px; /* total Height content + header + footer */
+	left: 0px; /* sum(colwidth) */
+	width: 20px; 
+	height: 245px; /* total Height content + header + footer */
+/*	background-color: silver; */
+	overflow: auto;
+}
+
+div#tableContainer div.vscrollsize{
+	height: 685px; /* [altura del contenido: 40 filas * 16px] 640px  - [altura del contenedor] 200px - [altura de la barra scrollbar 25px header + 200px content + 20px footer] 245px */
+}
+
+

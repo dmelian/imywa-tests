@@ -1,0 +1,62 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<link href="http://localhost/apps/style/jqueryui/start/jquery-ui-1.9.1.custom.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script>
+   
+	function miclase(){};
+	
+	miclase.prototype.printMe= function(){
+		$(".dialogx").dialog({
+			resizable: this.resizable,
+			width: this.width,
+			modal: this.modal,
+			title: this.title,
+			buttons: { // Le indicamos los botones del dialgo. Esto es para pruebas.		
+				"Aceptar": function() {alert('Ha pulsado Aceptar');}
+				, "Cancelar": function() {alert('Ha pulsado Cancelar');}
+			}
+		});
+	};
+	
+	miclase.prototype.printTitle= function(){
+		alert(this.title);
+	};
+	
+	miclase.prototype.loadFromJSON= function(json){
+		for (var attr in json) this[attr]= json[attr];
+	};
+	
+	function start(){
+		var mijson= JSON.parse('{"resizable":true, "width":400, "modal":true, "title":"Entrada al Sistema"}');
+		var miobjeto= new miclase();
+		miobjeto.loadFromJSON(mijson);
+		miobjeto.printMe();
+		miobjeto.printTitle();
+	}	 
+		
+            
+</script>
+</head>
+<body onload="start();">
+
+<div class="dialogx" id="maindlg">
+	<table>
+		<tr>
+			<td class="card_caption">Usuario</td>
+			<td class="card_content"><input name="user" type="text" value=""></td>
+		</tr>
+		<tr>
+			<td class="card_caption">Contraseña</td>
+			<td class="card_content"><input name="password" type="password" value=""></td>
+		</tr>
+	</table>
+</div>
+</body>
+
+</html>

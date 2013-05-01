@@ -1,0 +1,130 @@
+div#titlebar{
+background-color: navy;
+color: white;
+}
+
+div#menubar{
+background-color: white;
+}
+
+div#menubar a{
+padding-left: 0.5em;
+padding-right: 2em;
+background-color: smokewhite;
+}
+
+div#menubar a:hover{
+background-color: black;
+color: white;
+}
+
+div.widthPull {
+	float: right;
+	width: 12px;
+	height: 25px;
+	background-color: navy;
+	background-position: center-top;
+	background-image: url('widthpull.png');
+	background-repeat: repeat-y;
+	cursor: ew-resize;
+}
+
+div#menus ul{
+margin: 0;
+padding: 2px;
+width: 180px;
+list-style-type: none;
+position: absolute;
+background-color: white;
+visibility: hidden;
+z-index: 1;
+}
+
+div#menus li{
+top: -2px;
+position: relative;
+display: inline;
+}
+
+div#menus li a{
+width: 100%;
+display: inline-block;
+}
+
+div#menus li a:hover{
+background-color: black;
+color: white;
+}
+
+div#menus .checked{
+background: red url(menuchecked.gif) no-repeat center right;
+}
+
+div#toolbar{
+background-color: silver;
+}
+
+div#statusbar{
+background-color: navy;
+color: white;
+}
+
+div#header{
+background-color: silver;
+}
+
+
+div.tableContainer{
+	overflow: hidden;
+}
+
+div.tableContainer div.tableView{
+	position: relative;
+}
+
+div.tableContainer div.scrollTableView{
+	position: relative;
+	overflow: hidden;
+}
+
+div.tableContainer div.tableContent{
+	position: relative;
+}
+
+
+div.tableContainer div.scrollTableContent{
+	position: relative;
+	overflow: hidden;
+}
+
+div.tableContainer div.vscroll{
+	position: relative;
+	width: 20px; 
+	overflow: auto;
+	z-index: 1;
+	background-color: whitesmoke;
+	color: whitesmoke;
+}
+
+
+div.tableContainer div.hscroll{
+	position: relative;
+	height: 20px;
+	overflow: auto;
+	background-color: whitesmoke;
+	color: whitesmoke; 
+	z-index: 1;
+}
+
+div.tableContainer div.vscrollsize{
+	width: 20px;
+}
+
+div.tableContainer div.hscrollsize{
+	height: 20px;
+}
+
+
+div#row30 {
+	background-color: yellow;
+}
