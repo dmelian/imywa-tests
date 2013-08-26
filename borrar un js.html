@@ -1,0 +1,169 @@
+<td id="rightcolumn">
+	<h3>
+	Dynamically 
+	removing/ replacing an external 
+	JavaScript or CSS file</h3>
+    <p>Any external JavaScript or CSS file, whether added manually or 
+	dynamically, can be removed from the page. The end result may not be fully 
+	what you had in mind, however. I'll talk about this a little later.</p>
+	<h4>
+    <img border="0" src="../jkincludes/arrow2.gif" width="17" height="17"> 
+	Dynamically removing an external JavaScript or CSS file</h4>
+    <p>To remove an external JavaScript or CSS file from a page, the key is to 
+	hunt them down first by traversing the DOM, then call DOM's <code>
+	removeChild()</code> method to do the hit job. A generic approach is to 
+	identify an external file to remove based on its file name, though there are 
+	certainly other approaches, such as by CSS class name. With that in mind, the 
+	below function removes any external JavaScript or CSS file based on the file 
+	name entered:</p>
+	<pre class="codewrap">function removejscssfile(filename, filetype){
+ var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
+ var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+ var allsuspects=document.getElementsByTagName(targetelement)
+ for (var i=allsuspects.length; i&gt;=0; i--){ //search backwards within nodelist for matching elements to remove
+  if (allsuspects[i] &amp;&amp; allsuspects[i].getAttribute(targetattr)!=null &amp;&amp; allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
+   allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+ }
+}
+
+removejscssfile("somescript.js", "js") //remove all occurences of "somescript.js" on page
+removejscssfile("somestyle.css", "css") //remove all occurences "somestyle.css" on page</pre>
+	<p>The function starts out by creating a collection out of either all 
+	"<code>SCRIPT</code>" or "<code>LINK</code>" elements on the page depending 
+	on the desired file type to remove. 
+	The corresponding attribute to look at also changes accordingly ("<code>src</code>" or 
+	"<code>href</code>" attribute). Then, the function sets out to loop through the gathered elements 
+	backwards to see if any of them match the name of the file that should be 
+	removed. There's a reason for the reversed direction- if/whenever an 
+	identified element is deleted, the collection collapses by one element each 
+	time, and to continue to cycle through the new collection correctly, 
+	reversing the direction does the trick (it may encounter undefined 
+	elements, hence the first check for <code>allsuspects[i]</code> in the <code>if</code> 
+	statement). Now, to delete the identified element, the DOM method <code>
+	parentNode.removeChild()</code> is called on it.</p>
+	<p>So what actually happens when you remove an external JavaScript or CSS 
+	file? Perhaps not entirely what you would expect actually. In the case of 
+	JavaScript, while the element is removed from the document tree, any code 
+	loaded as part of the external JavaScript file remains in the browser's 
+	memory. That is to say, you can still access variables, functions etc that 
+	were added when the external file first loaded (at least in IE7 and 
+	Firefox 2.x). If you're looking to reclaim browser memory by removing an 
+	external JavaScript, don't rely on this operation to do all your work. With external CSS files, when you remove a file, the 
+	document does reflow to take into account the removed CSS rules, but unfortunately, 
+	<b>not</b> in IE7 (Firefox 2.x and Opera 9 do).</p>
+    <table id="demotable" border="1" width="100%" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td width="33%" valign="top"><b>Demo:</b><ul>
+				<li><a href="javascript:loadjscssfile('myscript.js','js')">Load "myscript.js"</a><br>
+				<b><a href="javascript:removejscssfile('myscript.js','js')">Remove "myscript.js"</a></b></li>
+				<li><a href="javascript:loadjscssfile('mystyle.css','css')">Load "mystyle.css"</a><br>
+				<b><a href="javascript:removejscssfile('mystyle.css','css')">Remove "mystyle.css"</a></b></li>
+			</ul>
+			</td>
+			<td width="33%" valign="top"><b>"myscript.js" source:</b><pre>var petname="Spotty"
+alert("Pet Name: " + petname)</pre>
+			</td>
+			<td width="33%" valign="top"><b>"mystyle.css" source:</b><pre>#demotable td{
+background-color: lightyellow;
+}
+
+#demotable b{
+color: blue;
+}</pre>
+			</td>
+		</tr>
+	</tbody></table>
+    <h4>
+    <img border="0" src="../jkincludes/arrow2.gif" width="17" height="17"> 
+	Dynamically replacing an external JavaScript or CSS file</h4>
+    <p>Replacing an external JavaScript or CSS file isn't much different than 
+	removing one as far as the process goes. Instead of calling <code>
+	parentNode.removeChild()</code>, you'll be using <code>
+	parentNode.replaceChild()</code> to do the bidding instead:</p>
+	<pre class="codewrap">function createjscssfile(filename, filetype){
+ if (filetype=="js"){ //if filename is a external JavaScript file
+  var fileref=document.createElement('script')
+  fileref.setAttribute("type","text/javascript")
+  fileref.setAttribute("src", filename)
+ }
+ else if (filetype=="css"){ //if filename is an external CSS file
+  var fileref=document.createElement("link")
+  fileref.setAttribute("rel", "stylesheet")
+  fileref.setAttribute("type", "text/css")
+  fileref.setAttribute("href", filename)
+ }
+ return fileref
+}
+
+function replacejscssfile(oldfilename, newfilename, filetype){
+ var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist using
+ var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+ var allsuspects=document.getElementsByTagName(targetelement)
+ for (var i=allsuspects.length; i&gt;=0; i--){ //search backwards within nodelist for matching elements to remove
+  if (allsuspects[i] &amp;&amp; allsuspects[i].getAttribute(targetattr)!=null &amp;&amp; allsuspects[i].getAttribute(targetattr).indexOf(oldfilename)!=-1){
+   var newelement=createjscssfile(newfilename, filetype)
+<font color="#FF0000">   allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i])</font>
+  }
+ }
+}
+
+replacejscssfile("oldscript.js", "newscript.js", "js") //Replace all occurences of "oldscript.js" with "newscript.js"
+replacejscssfile("oldstyle.css", "newstyle", "css") //Replace all occurences "oldstyle.css" with "newstyle.css"</pre>
+    <p>Notice the helper function <code>createjscssfile()</code>, which is 
+	essentially just a duplicate of <code>loadjscssfile()</code> as seen on the previous 
+	page, but modified to return the newly created element instead of actually 
+	adding it to the page. It comes in handy when <code>
+	parentNode.replaceChild()</code> is called in <code>replacejscssfile()</code> 
+	to replace the old element with the new. Some good news here- when you 
+	replace one external CSS file with another, all browsers, including IE7, 
+	will reflow the document automatically to take into account the new file's 
+	CSS rules.</p>
+    <table id="demotable2" border="1" width="100%" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td width="33%" valign="top"><b>Demo:</b><ul>
+				<li><a href="javascript:loadjscssfile('oldscript.js','js')">Load "oldscript.js"</a><br>
+				<b>
+				<a href="javascript:replacejscssfile('oldscript.js', 'newscript.js', 'js')">Replace with "newscript.js" instead</a></b></li>
+				<li><a href="javascript:loadjscssfile('oldstyle.css','css')">Load "oldstyle.css"</a><br>
+				<b>
+				<a href="javascript:replacejscssfile('oldstyle.css','newstyle.css','css')">Replace with "newstyle.css" instead</a></b></li>
+			</ul>
+			</td>
+			<td width="33%" valign="top"><b>"oldscript.js" source:</b><pre>var petname="Spotty"
+alert("Pet Name: " + petname)</pre>
+			<p><b>"newscript.js" source:</b></p><pre>var petname="Beauty"
+alert("Pet Name: " + petname)</pre>
+			</td>
+			<td width="33%" valign="top"><b>"oldstyle.css" source:</b><pre>#demotable2 td{
+background-color: lightyellow;
+}
+
+#demotable2 b{
+color: blue;
+}</pre>
+			<p><b>"newstyle.css" source:</b></p>
+			<pre>#demotable2 td{
+background-color: lightblue;
+}
+
+#demotable2 b{
+color: red;
+}</pre>
+			</td>
+		</tr>
+	</tbody></table>
+    <h4>
+    <img border="0" src="../jkincludes/arrow2.gif" width="17" height="17"> 
+	Conclusion</h4>
+	<p>So when is all this useful? Well, in today's world of Ajax and ever 
+	larger web applications, being able to load accompanying JavaScript/ CSS 
+	files asynchronously and on demand is not only handy, but in some cases, 
+	necessary. Have fun finding out what they are, or implementing the 
+	technique. :)</p>
+	<ul id="toc">
+      <li><a href="loadjavascriptcss.shtml">Dynamically removing an external 
+		JavaScript or CSS file</a></li>
+      <li>Dynamically removing/ replacing external JavaScript and CSS files, 
+		conclusion</li>
+    </ul>
+    </td>

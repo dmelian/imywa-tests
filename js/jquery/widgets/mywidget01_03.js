@@ -4,7 +4,9 @@ $.widget('iwa.mywidget01', {
 	
 	_create: function() {
 		this.element.addClass('mywidget01');
-
+		this._container= $('<div class="container"></div>').appendTo(this.element);
+		this._setOptions({
+		});
 	},
 
 	_destroy: function() {
