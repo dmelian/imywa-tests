@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+
+(function(undefined){
+	// Private ?
+	var name= 'class1';
+	
+	// Private ?
+	function getClassName(){
+		return name;
+	}
+	
+	window.myClass1= {
+		name: 'objectofclass1',
+		showMe: function(){
+			alert(
+				"Hello I am " + this.name
+				+ "\n my class is " + name
+				+ "\n and I can call form my class name" + getClassName()
+			);
+		},
+		setClassName: function(classname){
+			name= classname;
+		}
+	};
+
+	
+})();
+
+
+
+(function(undefined){
+	// Private ?
+	var name= 'class2';
+	
+	// Private ?
+	function getClassName(){
+		return name;
+	}
+	
+	window.myClass2= {
+		name: 'objectofclass2',
+		showMe: function(){
+			alert(
+				"Hello I am " + this.name
+				+ "\n my class is " + name
+				+ "\n and I can call form my class name" + getClassName()
+			);
+		}
+	};
+	
+})();
+
+(function($, undefined){
+
+	var myObject= $.extend({}, window.myClass1);
+	myObject.showMe();
+	var myObject2= $.extend({}, window.myClass2);
+	myObject2.showMe();
+	var myObject3= $.extend({}, window.myClass1);
+	myObject3.setClassName('class name modified');
+	myObject.showMe();
+	
+	if (name) {
+		alert("I can access name: name= " + name);
+	} else {
+		alert("I can not access to name");
+	}
+	
+})(jQuery);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
