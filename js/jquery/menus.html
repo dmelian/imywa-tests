@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LEARN JQUERY UI MENU</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css" />
+<style>
+	.ui-menu {
+		width: 200px;
+	}
+
+	#status {
+		position: absolute;
+		bottom: 0px;
+	}
+
+</style>
+<script>
+(function($){
+
+	var blurs=0; 
+	var focuses=0;
+	var zeros=0;
+	var inside=0;
+	var outs=0;
+
+	$(function() {
+
+		$("#menu ul").menu({
+			blur: function(event, ui){
+				blurs++;
+				$("#blurs").text("blur: " + blurs);
+				inside--;
+				if (inside == 0) { 
+					zeros++;
+					$("#zeros").text("zeros: " + zeros);
+					if (!$(event.currentTarget).hasClass("ui-menu-item")){
+						outs++;
+						$("#outs").text("out: " + outs);
+						console.log("outing class: " + event.currentTarget.className);
+					} else {
+						console.log("outing class: " + event.currentTarget.className);
+					}
+				}
+			},
+			focus: function(event, ui){
+				focuses++;
+				$("#focuses").text("focus: " + focuses);
+				inside++;
+			}
+		});
+
+	});
+
+} (jQuery));
+
+</script>
+</head>
+
+<body>
+<div id="menu">
+	<ul>
+		<li><a>Tema</a>
+			<ul>
+				<li><a>blitzer</a></li>
+				<li><a>cupertino</a></li>
+				<li><a>custom-theme</a></li>
+				<li><a>dark-hive</a></li>
+				<li><a>eggplant</a></li>
+				<li><a>excite-bike</a></li>
+				<li><a>flick</a></li>
+				<li><a>hot-sneaks</a></li>
+				<li><a>humanity</a></li>
+				<li><a>le-frog</a></li>
+				<li><a>overcast</a></li>
+				<li><a>pepper-grinder</a></li>
+				<li><a>redmond</a></li>
+				<li><a>smoothness</a></li>
+				<li><a>south-street</a></li>
+				<li><a>start</a></li>
+				<li><a>sunny</a></li>
+				<li><a>ui-darkness</a></li>
+				<li><a>ui-lightness</a></li>
+				<li><a>vader</a></li>
+			</ul>
+		</li> 
+		<li><a>Idioma</a>
+			<ul>
+				<li><a>english</a>
+					<ul>
+						<li><a>Schotish</a></li>
+						<li><a>Wales</a></li>
+						<li><a>Bretain</a></li>
+						<li><a>Irish</a></li>
+						<li><a>Usa</a></li>
+					</ul>
+				</li>
+				<li><a>español</a>
+					<ul>
+						<li><a>Andaluz</a></li>
+						<li><a>Madrileño</a></li>
+						<li><a>Canario</a></li>
+						<li><a>Vallesoletano</a></li>
+						<li><a>Asturiano</a>
+							<ul>
+								<li><a>Africa</a>
+									<ul>
+										<li><a>Holiday World</a></li>
+										<li><a>Marketing</a></li>
+										<li><a>Control</a></li>
+									</ul>
+								</li>
+								<li><a>Pepín</a></li>
+								<li><a>Francisco</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<div id="status">status: <span id="focuses"></span> <span id="blurs"></span> <span id="zeros"></span> <span id="outs"></span>.</div>
+</body>
+</html>

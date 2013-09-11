@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LEARN JQUERY FACTORY WIDGET</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css" />
+<style>
+</style>
+<script>
+(function($){
+
+	$.widget("imywa.progressbar", {
+
+		options: {
+			value: 89
+		},
+
+		_create: function(){
+			this.options.value= this._constrain(this.options.value);
+			this._update();
+		},
+
+		value: function(value){
+			if (value === undefined) return this.options.value;
+			else {
+				this.options.value= this._constrain(value); // or this._setOption('value', value);
+				this._update();
+			}
+		},
+
+		_setOption: function(option, value){
+			this.options[option]= this._constrain(value);
+			this._update();
+		},
+
+
+		_update: function(){
+			var progress= this.options.value + "%";
+			this.element.text(progress);
+		},
+
+		_constrain: function(value){
+			if (value > 99) {
+				var errvalue= value; value= 99;
+				this._trigger("maxreached", null, {value: errvalue});
+			} else if (value < 50) {
+				var errvalue= value; value= 50;
+				this._trigger("minreached", null, {value: errvalue});
+			}
+			return value;
+		},
+
+		_destroy: function(){
+			this.element.removeClass("progressbar")
+				.text("");
+
+		}
+
+
+	});
+
+
+	$(function(){
+/*		$("<div>").appendTo("body").progressbar({value: 120});
+		$("<div>").appendTo("body").progressbar({value: -23});
+*/
+		var bar=$("<div>").appendTo("body").progressbar({
+			maxreached: function(event, data){
+				alert("Sobrepeso: " + data.value + " kilos");
+			},
+
+			minreached: function(event, data){
+				alert("Bajopeso: " + data.value + " kilos");
+			}
+		}).data("progressbar");
+		bar.progressbar("value", 39);
+		alert("value of 39:" + bar.progressbar("value"));
+		bar.progressbar("option", "value", 155);
+		alert("value of 155:" + bar.progressbar("option", "value"));
+
+//todo: MIRAR MEJOR
+// Añadiendo un nuevo método de forma dinámica
+	$.imywa.progressbar.prototype.reset= function(){ this._setOption("value", 88); }
+// Accediendo directamente a los métodos y attributos.
+	alert("direct-value" + bar.options.value); //Esto no sale
+
+
+	bar.progressbar("destroy");
+
+	});
+
+} (jQuery));
+
+</script>
+</head>
+
+<body>
+<p>Siguiendo el tutorial http://learn.jquery.com/plugins/stateful-plugins-with-widget-factory/</p>
+
+</body>
+</html>
