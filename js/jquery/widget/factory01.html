@@ -66,9 +66,7 @@
 
 
 	$(function(){
-/*		$("<div>").appendTo("body").progressbar({value: 120});
-		$("<div>").appendTo("body").progressbar({value: -23});
-*/
+
 		var bar=$("<div>").appendTo("body").progressbar({
 			maxreached: function(event, data){
 				alert("Sobrepeso: " + data.value + " kilos");
@@ -77,20 +75,29 @@
 			minreached: function(event, data){
 				alert("Bajopeso: " + data.value + " kilos");
 			}
-		}).data("progressbar");
+		});
 		bar.progressbar("value", 39);
 		alert("value of 39:" + bar.progressbar("value"));
 		bar.progressbar("option", "value", 155);
 		alert("value of 155:" + bar.progressbar("option", "value"));
 
-//todo: MIRAR MEJOR
-// Añadiendo un nuevo método de forma dinámica
-	$.imywa.progressbar.prototype.reset= function(){ this._setOption("value", 88); }
-// Accediendo directamente a los métodos y attributos.
-	alert("direct-value" + bar.options.value); //Esto no sale
+		bar.progressbar("destroy");
 
+	/* Direct access - trick */
 
-	bar.progressbar("destroy");
+		// adding a new method dynamically
+		$.imywa.progressbar.prototype.reset= function(){ this._setOption("value", 88); }
+		// Accediendo directamente a los métodos y attributos.
+
+		var bar=$("<div>").appendTo("body").progressbar()
+			.data("imywaProgressbar");
+		bar.value(34);
+		alert("value of 34:" + bar.value());
+		bar.option("value", 256);
+		alert("value of 255:" + bar.option("value"));
+		bar.reset();
+		alert("reset value:" + bar.value());
+		bar.destroy();
 
 	});
 
