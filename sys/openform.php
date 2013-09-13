@@ -3,7 +3,7 @@
 class sendForm{
 	public $html;
 	public $className= 'form';
-	public $widgets= array();
+	public $widgets= array(); // id => array(type, options);
 }
 
 $form= new sendForm();
@@ -16,5 +16,6 @@ $form->className= 'formpio';
 $form->widgets['continue']= 'button';
 $form->widgets['pause']= 'button';
 $form->widgets['restore']= 'button';
+//TODO: include options : $form->widgets['backup']= array('type'=>'button', 'options'=>??? );
 
 echo json_encode($form);
