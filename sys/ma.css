@@ -1,6 +1,27 @@
-@CHARSET "UTF-8";
-
-.ma-form {
-	background-color: olive;
-	color: white;
+/* @CHARSET "UTF-8"; */
+body {
+  margin: 0px;
+}
+#maHeader {
+  background-color: #000080;
+  left: 0px;
+  width: 100%;
+  top: 0px;
+  height: 80px;
+}
+#maBody {
+  background-color: whiteSmoke;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  top: 80px;
+  bottom: 50px;
+}
+#maFooter {
+  background-color: lightGray;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  bottom: 0px;
+  height: 50px;
 }
