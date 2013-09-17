@@ -1,13 +1,10 @@
 (function($){
 
-	
 	$.ma= {};
-	
 	
 	$.ma.currSession= {
 		id: 0
 	};
-	
 
 	$.widget("ma.maManager", {
 	
@@ -45,11 +42,9 @@
 			else $("#maForm").html(formContent.html);
 			
 			// 4 .  ACTIVATE THE NEW-CURRENT FORM.
-			var className=  (formContent.className === undefined) ? "maForm" : formContent.className;
-			this._currentForm= $("#maForm")[className]({widgets: formContent.widgets})
-				.data("ma-"+className);
-			var peo= "peo";
-//				.data("ma" + className.charAt(0).toUppercase() + className.substr(1));
+			var formClass=  (formContent.formClass === undefined) ? {namespace:"ma", className:"maForm"} : formContent.formClass;
+			this._currentForm= $("#maForm")[formClass.className]({widgets: formContent.widgets})
+				.data(formClass.namespace + "-" + formClass.className);
 		}
 		
 	});
@@ -74,10 +69,8 @@
 		
 		
 		_destroy: function(){
-			this.element.removeClass("maForm-testing");
-/*			form=$("#maForm").data("maFormpio");
 			form.deactivateWidgets(formContent.widgets);
-*/			
+			this.element.removeClass("maForm-testing");
 		},
 
 		_setOption: function(option, value){
@@ -89,15 +82,22 @@
 		},
 		
 		activateWidgets: function(){
-			for (var id in this.options.widgets) $("#"+id)[this.options.widgets[id]]();
+			for (var id in this.options.widgets){
+				
+				var widget= this.options.widgets[id];
+				widget.object= $("#"+id)[widget.className]()
+					.data(widget.namespace + "-" + widget.className);
+				
+				if (widget.options !== undefined){
+					for (var option in widget.options){
+						widget.object._setOption(option, widget.options[option]);
+					}
+				}
+			}
 		},
 		
 		deactivateWidgets: function(){
-			for (var id in this.options.widgets) {
-				$widget= $("#"+id)[this.options.widgets[id]]()
-					.data(this.options.widgets[id]); //Anteponer el ma.
-			}
-			
+			for (var id in this.options.widgets) this.options.widgets[id].object.destroy();
 		}
 		
 		
@@ -137,6 +137,42 @@
 
 	});
 
+	
+	$.widget("ma.maTextBox", {
+		
+		options:{
+			
+		},
+		
+		_create: function(){
+			this.element.addClass("maTextBox");
+		},
+		
+		_destroy: function(){
+			this.element.removeClass("maTextBox");
+			
+		}
+		
+	});
+
+	$.widget("ma.maButton", $.ui.button, {
+		
+		options:{
+			
+		},
+		
+		_create: function(){
+			$.ui.button.prototype._create.call(this);
+			this.element.addClass("maButton");
+		},
+		
+		_destroy: function(){
+			this.element.removeClass("maButton");
+			$.ui.button.prototype._destroy.call(this);
+			
+		}
+		
+	});
 	
 	
 	

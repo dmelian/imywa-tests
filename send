@@ -1,3 +1,3 @@
-lessc sys/ma.less.css > sys/ma.css
+lessc --verbose sys/ma.less.css > sys/ma.css
 
 cp -R * /var/www/tests
