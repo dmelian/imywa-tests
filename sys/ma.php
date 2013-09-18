@@ -16,12 +16,7 @@ $form->className= 'ma-wdForm';
 switch ($formRequested){
 	case 'sys/start':
 		$form->widgets['continue']= array('className'=>'ma-wdButton'
-			, 'options'=>array('action'=>array('action'=>'openForm','form'=>'sys/continue', 'formActions'=>array('action'=>'compound', 'actions'=>array(
-					1 => array('action'=>'setFilter','filter'=>'peo*0')
-					, 2 => array('action'=>'setAutomation', 'automation'=>'activeForm')
-					, 3 => array('action'=>'setDashboard'))
-					))
-				));
+			, 'options'=>array('action'=>array('action'=>'openForm','form'=>'sys/continue')));
 		
 		$form->html= '<h1>Formulario de inicio</h1>';
 		$form->html.= "<p>Este es el formulario inicial de arranque.</p>";
@@ -31,10 +26,13 @@ switch ($formRequested){
 	
 	case 'sys/continue':
 		$form->widgets['ok']= array('className'=>'ui-button');
-		
+		$form->widgets['continue']= array('className'=>'ma-wdButton'
+			, 'options'=>array('action'=>array('action'=>'openForm', 'form'=>'sys/anotherForm')));
+			
 		$form->html= '<h1>Formulario de continuación</h1>';
 		$form->html.= "<p>Este representa a un formulario normal dentro de la aplicación.</p>";
 		$form->html.= '<button id="ok">Aceptar</button><br/>';
+		$form->html.= '<button id="continue">Seguir Jugando</button><br/>';
 		
 		$form->log= 'POST: ' . print_r($_POST, true);
 		$form->log.= 'GET: ' . print_r($_GET, true);

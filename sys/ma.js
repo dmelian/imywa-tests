@@ -3,7 +3,6 @@
 	$.widget("ma.wdManager", {
 	
 		_currentForm: null,
-		_lastAction: null,
 		
 		options: {
 			
@@ -18,9 +17,8 @@
 		},
 		
 		execAction: function(action){
-			this._lastAction= action;
 			switch (action.action){
-				case "openForm": this.openForm(action.form, action.formActions);
+				case "openForm": this.openForm(action.form, action.arguments);
 				break;
 			}
 		},
