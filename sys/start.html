@@ -14,7 +14,7 @@
 	$(function(){
 		
 		$.ma.manager= $("body").wdManager().data("ma-wdManager");
-		$.ma.manager.openForm("bas/sys/session.php", {setFilter:"Jua*", storeData: true, record:{id: 123, name: "Domingo"
+		$.ma.manager.openForm("sys/start", {setFilter:"Jua*", storeData: true, record:{id: 123, name: "Domingo"
 			, address: { address: "C/Cebrián 42", postalCode: "35002", county: "Las Palmas de Gran Canaria"}}});
 		
 	});

@@ -106,25 +106,14 @@
 		},
 
 		_create: function(){
-			$.ma.wdForm.prototype._create.call(this);
+			this._super(); //$.ma.wdForm.prototype._create.call(this);
 			this.element.addClass("pio-pio");
-			//$(this.element).find("button").button();
-			this._update();
 		},
-
-		_setOption: function(option, value){
-			this._update();
-		},
-
-
-		_update: function(){
-		},
-		
 
 
 		_destroy: function(){
-			//$(this.element).find("button").data("button").destroy();
 			this.element.removeClass("pio-pio");
+			this._super();
 		}
 
 
@@ -151,17 +140,17 @@
 	$.widget("ma.wdButton", $.ui.button, {
 		
 		options:{
-			
+			action: {}
 		},
 		
 		_create: function(){
-			$.ui.button.prototype._create.call(this);
+			this._super(); //$.ui.button.prototype._create.call(this);
 			this.element.addClass("maButton");
-		},
 		
+		},
 		_destroy: function(){
 			this.element.removeClass("maButton");
-			$.ui.button.prototype._destroy.call(this);
+			this._super();//$.ui.button.prototype._destroy.call(this);
 			
 		}
 		
