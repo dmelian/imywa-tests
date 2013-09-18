@@ -3,6 +3,7 @@
 	$.widget("ma.wdManager", {
 	
 		_currentForm: null,
+		_lastAction: null,
 		
 		options: {
 			
@@ -14,6 +15,14 @@
 		
 		_destroy: function(){
 			
+		},
+		
+		execAction: function(action){
+			this._lastAction= action;
+			switch (action.action){
+				case "openForm": this.openForm(action.form, action.formActions);
+				break;
+			}
 		},
 		
 		openForm: function(form, actions){
@@ -32,12 +41,14 @@
 			if (this._currentForm) this._currentForm.destroy();
 			
 			// 3 . SWITCH THE OLDER HTML CONTENT WITH THE CONTENT OBTAINED ON STEP 1
-			if (formContent.html === undefined) $("#maForm").text="";
+			if (!formContent.html) $("#maForm").text="";
 			else $("#maForm").html(formContent.html);
 			
 			// 4 .  ACTIVATE THE NEW-CURRENT FORM.
-			var className=  (formContent.className === undefined) ? "ma-wdForm" : formContent.className;
+			var className=  (!formContent.className) ? "ma-wdForm" : formContent.className;
 			this._currentForm= $("#maForm")[className.split("-")[1]]({widgets: formContent.widgets}).data(className);
+			
+			if (!!formContent.log) console.log(formContent.log);
 		}
 		
 	});
@@ -52,17 +63,12 @@
 		_create: function(){
 			this.element.addClass("maForm-testing");
 			this.activateWidgets();
-/*			form=$("#maForm").data("maFormpio");
-			form.activateWidgets(formContent.widgets);
-*/			
-			
-			
 			this._update();
 		},
 		
 		
 		_destroy: function(){
-			form.deactivateWidgets(formContent.widgets);
+			this.deactivateWidgets();
 			this.element.removeClass("maForm-testing");
 		},
 
@@ -146,12 +152,20 @@
 		_create: function(){
 			this._super(); //$.ui.button.prototype._create.call(this);
 			this.element.addClass("maButton");
+			this._on({click: "action"});
 		
 		},
+		
 		_destroy: function(){
+			this._off(this.element,"click");
 			this.element.removeClass("maButton");
 			this._super();//$.ui.button.prototype._destroy.call(this);
 			
+		},
+		
+		action: function(event){  
+		//TODO: Desde aquí hay que lanzar un open formulario, que cierra el formulario actual del que este botón es parte.
+			$.ma.manager.execAction(this.options.action);
 		}
 		
 	});
