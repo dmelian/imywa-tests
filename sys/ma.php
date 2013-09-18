@@ -11,15 +11,15 @@ class sendForm{
 
 $form= new sendForm();
 
-$form->formClass= array('namespace'=>'ma', 'className'=>'maForm');
+$form->className= 'ma-wdForm';
 
-$form->widgets['continue']= array('namespace'=>'ui','className'=>'button');
-$form->widgets['pause']= array('namespace'=>'ui','className'=>'button');
-$form->widgets['restore']= array('namespace'=>'ui','className'=>'button','options'=>array('disabled'=>true));
-$form->widgets['mabutton']= array('namespace'=>'ma','className'=>'maButton');
-$form->widgets['login']= array('namespace'=>'ma', 'className'=>'maTextBox');
-$form->widgets['login1']= array('namespace'=>'ma', 'className'=>'maTextBox');
-$form->widgets['login2']= array('namespace'=>'ma', 'className'=>'maTextBox');
+$form->widgets['continue']= array('className'=>'ui-button');
+$form->widgets['pause']= array('className'=>'ui-button');
+$form->widgets['restore']= array('className'=>'ui-button','options'=>array('disabled'=>true));
+$form->widgets['mabutton']= array('className'=>'ma-wdButton');
+$form->widgets['login']= array('className'=>'ma-wdTextBox');
+$form->widgets['login1']= array('className'=>'ma-wdTextBox');
+$form->widgets['login2']= array('className'=>'ma-wdTextBox');
 
 $form->html= '<h1>Formulario 1</h1>';
 $form->html.= '<p>Este es un formulario descargado de internet</p>';

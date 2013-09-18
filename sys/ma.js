@@ -1,12 +1,6 @@
 (function($){
 
-	$.ma= {};
-	
-	$.ma.currSession= {
-		id: 0
-	};
-
-	$.widget("ma.maManager", {
+	$.widget("ma.wdManager", {
 	
 		_currentForm: null,
 		
@@ -42,15 +36,14 @@
 			else $("#maForm").html(formContent.html);
 			
 			// 4 .  ACTIVATE THE NEW-CURRENT FORM.
-			var formClass=  (formContent.formClass === undefined) ? {namespace:"ma", className:"maForm"} : formContent.formClass;
-			this._currentForm= $("#maForm")[formClass.className]({widgets: formContent.widgets})
-				.data(formClass.namespace + "-" + formClass.className);
+			var className=  (formContent.className === undefined) ? "ma-wdForm" : formContent.className;
+			this._currentForm= $("#maForm")[className.split("-")[1]]({widgets: formContent.widgets}).data(className);
 		}
 		
 	});
 	
 	
-	$.widget("ma.maForm", {
+	$.widget("ma.wdForm", {
 
 		options: {
 			widgets: {}
@@ -85,8 +78,8 @@
 			for (var id in this.options.widgets){
 				
 				var widget= this.options.widgets[id];
-				widget.object= $("#"+id)[widget.className]()
-					.data(widget.namespace + "-" + widget.className);
+				widget.object= $("#"+id)[widget.className.split("-")[1]]()
+					.data(widget.className);
 				
 				if (widget.options !== undefined){
 					for (var option in widget.options){
@@ -107,13 +100,13 @@
 
 	//	To inherit from another widget $.widget(name, [Base], prototype);	
 
-	$.widget("ma.maFormPio", $.ma.maForm, {
+	$.widget("ma.wdFormPio", $.ma.wdForm, {
 
 		options: {
 		},
 
 		_create: function(){
-			$.ma.maForm.prototype._create.call(this);
+			$.ma.wdForm.prototype._create.call(this);
 			this.element.addClass("pio-pio");
 			//$(this.element).find("button").button();
 			this._update();
@@ -138,7 +131,7 @@
 	});
 
 	
-	$.widget("ma.maTextBox", {
+	$.widget("ma.wdTextBox", {
 		
 		options:{
 			
@@ -155,7 +148,7 @@
 		
 	});
 
-	$.widget("ma.maButton", $.ui.button, {
+	$.widget("ma.wdButton", $.ui.button, {
 		
 		options:{
 			
