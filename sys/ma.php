@@ -19,11 +19,14 @@ function openForm(){
 	case 'sys/start':
 		$form->widgets['continue']= array('className'=>'ma-wdButton'
 			, 'options'=>array('action'=>array('action'=>'openForm','form'=>'sys/continue')));
-		
+		$form->widgets['test']= array('className'=>'ma-wdButton'
+			, 'options'=>array('action'=>array('action'=>'openForm','form'=>'sys/field-test')));
+			
 		$form->html= '<h1>Formulario de inicio</h1>';
 		$form->html.= "<p>Este es el formulario inicial de arranque.</p>";
 		$form->html.= "<p>Normalmente será un login con contraseña.</p>";
 		$form->html.= '<button id="continue">Continuar</button><br/>';
+		$form->html.= '<button id="test">Test</button><br/>';
 		break;
 		
 	case 'sys/continue':
@@ -68,6 +71,16 @@ function openForm(){
 		$form->html.= '<input id="login" /><br/>';
 		$form->html.= '<input id="login1" /><br/>';
 		$form->html.= '<input id="login2" /><br/>';
+		break;
+		
+	case 'sys/field-test':
+		$form->widgets['birthday']= array('className'=>'ma-wdDateBox');
+		$form->widgets['momBirthday']= array('className'=>'ma-wdDateBox');
+		
+		$form->html= '<h1>Testeo de widgets</h1>';
+		$form->html.= 'Fecha de Nacimiento:<input id="birthday" /><br/>';
+		$form->html.= 'y la de su madre?:<input id="momBirthday" /><br/>';
+		
 		break;
 		
 	default:

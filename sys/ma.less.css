@@ -63,3 +63,8 @@ body {
 .maTextBox:focus {
 	.maShadow(orange);
 }
+
+.maDateBox:focus {
+	.maShadow();
+}
+
