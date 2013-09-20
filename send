@@ -1,5 +1,5 @@
 cd sys
-lessc --verbose ma.less.css > ma.css
+#lessc --verbose ma.less.css > ma.css
 grunt
 cd ..
 

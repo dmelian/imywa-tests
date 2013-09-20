@@ -11,12 +11,23 @@ module.exports= function(grunt){
 				stripBanners: true 
 			},
 			dist: { src: "js/*.js", dest: "ma.js" }
-		}
+		},
+
+		less: {
+			src: {
+				expand: true,
+				cwd: ".",
+				src: "*.less.css",
+				ext: ".css"
+			}
+		},
 
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-concat");
+	grunt.loadNpmTasks("grunt-contrib-less");
 
-	grunt.registerTask('default',[ 'concat' ]);
+
+	grunt.registerTask('default',[ 'concat', 'less' ]);
 
 };
