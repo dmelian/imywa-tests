@@ -18,8 +18,11 @@
 		
 		execAction: function(action){
 			switch (action.action){
-				case "openForm": this.openForm(action.form, action.arguments);
+			case "openForm": 
+				this.openForm(action.form, action.arguments);
 				break;
+			default:
+				this.sendAction(action.action, action);
 			}
 		},
 		
@@ -27,6 +30,8 @@
 
 			// 1. SEND THE OPEN FORM REQUEST.
 			var formContent={};
+			if (!actions) actions={};
+			actions.action= 'openForm';
 			$.ajax({ url: "ma.php?" + form, type:"POST", dataType: "json", async: false
 				, data: actions
 				, success: function(result, status, xhr){ formContent= result;	}
@@ -47,6 +52,29 @@
 			this._currentForm= $("#maForm")[className.split("-")[1]]({widgets: formContent.widgets}).data(className);
 			
 			if (!!formContent.log) console.log(formContent.log);
+		},
+
+		sendAction: function(action, args){
+			var actionResponse={command: "close"};
+			var actions=args;
+			actions.action= action;
+			$.ajax({ url: "ma.php?" + action, type:"POST", dataType: "json", async: false
+				, data: actions
+				, success: function(result, status, xhr){ actionResponse= result;	}
+				, error: function(xhr, status, err){ alert("...Ajax error..."); }
+			});
+
+			// TODO: unsuccessfull request. 
+
+			this.execActionResponse(actionResponse);
+		},
+		
+		execActionResponse: function(actionResponse){
+			switch (actionResponse.command){
+			case "openLocation": 
+				window.location = actionResponse.location;
+				break;
+			}
 		}
 		
 	});

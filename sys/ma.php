@@ -7,13 +7,15 @@ class sendForm{
 	public $log;
 }
 
-$formRequested= $_SERVER['QUERY_STRING'];
 
-$form= new sendForm();
-$form->className= 'ma-wdForm';
-
-
-switch ($formRequested){
+function openForm(){
+	$formRequested= $_SERVER['QUERY_STRING'];
+	
+	$form= new sendForm();
+	$form->className= 'ma-wdForm';
+	
+	
+	switch ($formRequested){
 	case 'sys/start':
 		$form->widgets['continue']= array('className'=>'ma-wdButton'
 			, 'options'=>array('action'=>array('action'=>'openForm','form'=>'sys/continue')));
@@ -23,7 +25,7 @@ switch ($formRequested){
 		$form->html.= "<p>Normalmente será un login con contraseña.</p>";
 		$form->html.= '<button id="continue">Continuar</button><br/>';
 		break;
-	
+		
 	case 'sys/continue':
 		$form->widgets['ok']= array('className'=>'ui-button');
 		$form->widgets['continue']= array('className'=>'ma-wdButton'
@@ -40,7 +42,14 @@ switch ($formRequested){
 		
 		
 		break;
-	
+			
+	case 'sys/anotherForm':
+		$form->widgets['logout']= array('className'=>'ma-wdButton'
+			, 'options'=>array('action'=>array('action'=>'close')));
+		$form->html= '<h1>Fin de la aplicación</h1>';
+		$form->html.='<button id="logout">Salir</button>';
+		break;
+		
 	case 'sys/test':
 		$form->widgets['continue']= array('className'=>'ui-button');
 		$form->widgets['pause']= array('className'=>'ui-button');
@@ -59,19 +68,32 @@ switch ($formRequested){
 		$form->html.= '<input id="login" /><br/>';
 		$form->html.= '<input id="login1" /><br/>';
 		$form->html.= '<input id="login2" /><br/>';
-	break;
-	
+		break;
+		
 	default:
 		$form->widgets['ok']= array('className'=>'ui-button');
 		
 		$form->html= '<h1>Formulario no encontrado</h1>';
 		$form->html.= "<p>El formulario: $formRequested no existe.</p>";
 		$form->html.= '<button id="ok">Aceptar</button><br/>';
+			
+	}
+	echo json_encode($form);
+
+};
+
+
+switch ($_POST['action']){
+	case 'openForm': 
+		openform();
+		break;
+		
+	case 'close':
+		echo json_encode(array('command'=>'openLocation', 'location'=>'http://www.google.com'));
+		break;
 		
 }
 
 
 
 
-
-echo json_encode($form);
