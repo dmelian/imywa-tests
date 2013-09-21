@@ -1,5 +1,4 @@
-
-$.widget("ma.wdForm", {
+var wdForm= {
 
 	options: {
 		widgets: {}
@@ -46,6 +45,8 @@ $.widget("ma.wdForm", {
 	
 	
 
-});
+}; 
+
+$.widget("ma.wdForm", wdForm);
 
 

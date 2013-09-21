@@ -1,5 +1,5 @@
 
-$.widget("ma.wdButton", $.ui.button, {
+var wdButton= {
 	
 	options:{
 		action: {}
@@ -24,6 +24,8 @@ $.widget("ma.wdButton", $.ui.button, {
 		$.ma.manager.execAction(this.options.action);
 	}
 	
-});
+};
+
+$.widget("ma.wdButton", $.ui.button, wdButton);
 
 

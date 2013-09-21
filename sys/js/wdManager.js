@@ -1,5 +1,4 @@
-
-$.widget("ma.wdManager", {
+var wdManager= {
 
 	_currentForm: null,
 	
@@ -26,7 +25,7 @@ $.widget("ma.wdManager", {
 	},
 	
 	openForm: function(form, actions){
-
+	
 		// 1. SEND THE OPEN FORM REQUEST.
 		var formContent={};
 		if (!actions) actions={};
@@ -52,7 +51,7 @@ $.widget("ma.wdManager", {
 		
 		if (!!formContent.log) console.log(formContent.log);
 	},
-
+	
 	sendAction: function(action, args){
 		var actionResponse={command: "close"};
 		var actions=args;
@@ -62,9 +61,9 @@ $.widget("ma.wdManager", {
 			, success: function(result, status, xhr){ actionResponse= result;	}
 			, error: function(xhr, status, err){ alert("...Ajax error..."); }
 		});
-
+	
 		// TODO: unsuccessfull request. 
-
+	
 		this.execActionResponse(actionResponse);
 	},
 	
@@ -75,7 +74,9 @@ $.widget("ma.wdManager", {
 			break;
 		}
 	}
-	
-});
+};	
+
+
+$.widget("ma.wdManager", wdManager);
 
 

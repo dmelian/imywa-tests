@@ -1,6 +1,5 @@
-
-$.widget("ma.wdDateBox", {
-	
+var wdDateBox={
+		
 	options:{
 		id: '',
 		data: ''
@@ -37,6 +36,8 @@ $.widget("ma.wdDateBox", {
 	}
 
 	
-});
+};
+
+$.widget("ma.wdDateBox", wdDateBox);
 
 

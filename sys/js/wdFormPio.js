@@ -1,8 +1,7 @@
 
 /*	To inherit from another widget $.widget(name, [Base], prototype);	*/
 
-$.widget("ma.wdFormPio", $.ma.wdForm, {
-
+var wdFormPio= { 
 	options: {
 	},
 
@@ -16,8 +15,8 @@ $.widget("ma.wdFormPio", $.ma.wdForm, {
 		this.element.removeClass("pio-pio");
 		this._super();
 	}
+};
 
-
-});
+$.widget("ma.wdFormPio", $.ma.wdForm, wdFormPio);
 
 

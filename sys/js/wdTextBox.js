@@ -1,5 +1,4 @@
-
-$.widget("ma.wdTextBox", {
+var wdTextBox= {
 	
 	options:{
 		
@@ -14,6 +13,8 @@ $.widget("ma.wdTextBox", {
 		
 	}
 	
-});
+};
+
+$.widget("ma.wdTextBox", wdTextBox);
 
 
