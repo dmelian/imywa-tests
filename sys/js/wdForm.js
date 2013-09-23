@@ -36,11 +36,27 @@ var wdForm= {
 					widget.object._setOption(option, widget.options[option]);
 				}
 			}
+			
+			widget.object._setOption("validate", this.onWidgetValidate);
 		}
 	},
 	
 	deactivateWidgets: function(){
 		for (var id in this.options.widgets) this.options.widgets[id].object.destroy();
+	},
+	
+	onWidgetValidate: function( event, ui ){
+		console.log('Form->Widget-Validate....');
+		//TODO: Where is the record?, and the field information?
+		actions.action= 'validateField';
+		$.ajax({ url: "ma.php?" + form, type:"POST", dataType: "json", async: false
+			, data: actions
+			, success: function(result, status, xhr){ formContent= result;	}
+			, error: function(xhr, status, err){ alert("...Ajax error..."); }
+		});
+
+		
+		
 	}
 	
 	

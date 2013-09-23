@@ -76,10 +76,12 @@ function openForm(){
 	case 'sys/field-test':
 		$form->widgets['birthday']= array('className'=>'ma-wdDateBox');
 		$form->widgets['momBirthday']= array('className'=>'ma-wdDateBox');
+		$form->widgets['dadBirthday']= array('className'=>'ma-wdDateBox');
 		
 		$form->html= '<h1>Testeo de widgets</h1>';
-		$form->html.= 'Fecha de Nacimiento:<input id="birthday" /><br/>';
-		$form->html.= 'y la de su madre?:<input id="momBirthday" /><br/>';
+		$form->html.= 'Fecha de Nacimiento:<input id="birthday" tabindex="2"/><br/>';
+		$form->html.= 'y la de su madre?:<input id="momBirthday" tabindex="1"/><br/>';
+		$form->html.= 'y la de su padre?:<input id="dadBirthday" tabindex="3"/><br/>';
 		
 		break;
 		
@@ -103,6 +105,10 @@ switch ($_POST['action']){
 		
 	case 'close':
 		echo json_encode(array('command'=>'openLocation', 'location'=>'http://www.google.com'));
+		break;
+		
+	case 'validateField':
+		//TODO: Call to the mysql storeProcedure if needed, and return the validated field and record.
 		break;
 		
 }
