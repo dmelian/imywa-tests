@@ -48,33 +48,42 @@ button.disabled{
 	color: #a0a0a0 !important;
 }
 
-
+/*
+Color levels
+low-color: #4040A0 - normal background, active text
+high-color: #C0C0FF - shadow, border, active background.
+*/
 .pnl-select button {
 	background-color: #4040a0;
-	border-color: #8080ff;
+	border-color: #c0c0ff;
 	box-shadow: 4px 4px 8px 0px #C0C0FF; 
 	color: white;
 }
 .pnl-select button.active {
-	background-color: #a0a0ff;
+	background-color: #c0c0ff;
 	border-style: inset;
 	box-shadow: 1px 1px 8px 3px #C0C0FF;
 	font-weight: bold;
-	color: #202080
+	color: #4040a0;
 }
 
+/*
+low-color: a0a000 - luminance 80
+color: ffff01 - limunance 128
+high-color: ffffb9 - luminance 220
+*/
 .pnl-menu button {
-	background-color: #a0a040;
-	border-color: #ffff80;
-	box-shadow: 4px 4px 8px 0px #ffffc0; 
-	color: white;
+	background-color: #ffff01;
+	border-color: #ffffb9;
+	box-shadow: 4px 4px 8px 0px #ffffb9; 
+	color: black;
 }
 .pnl-menu button.active {
-	background-color: #ffffa0;
+	background-color: #ffffb9;
 	border-style: inset;
-	box-shadow: 1px 1px 8px 3px #ffffc0;
+	box-shadow: 1px 1px 8px 3px #ffffb9;
 	font-weight: bold;
-	color: #808020
+	color: #a0a000;
 }
 
 .pnl-display button {
@@ -88,7 +97,7 @@ button.disabled{
 	border-style: inset;
 	box-shadow: 1px 1px 8px 3px #ffc0ff;
 	font-weight: bold;
-	color: #802080
+	color: #802080;
 }
 
 
